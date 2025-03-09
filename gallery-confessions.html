@@ -151,12 +151,44 @@
                     <div class="swiper-pagination"></div>
                 </div>
 
-                <div class="video-container" data-aos="fade-up">
-                    <video controls>
-                        <source src="assets/videos/confessions.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la lecture de vidéos.
-                    </video>
-                </div>
+                <iframe id="youtube-player" class="video-container"
+                        src="https://www.youtube.com/embed/htfWbHPe-jA?enablejsapi=1"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen>
+                </iframe>
+
+                <script>
+                    var player;
+                    function onYouTubeIframeAPIReady() {
+                        player = new YT.Player('youtube-player', {
+                            events: {
+                                'onReady': onPlayerReady,
+                                'onPlaybackQualityChange': onPlayerPlaybackQualityChange,
+                                'onStateChange': onPlayerStateChange
+                            }
+                        });
+                    }
+
+
+                    function onPlayerReady(event) {
+                        event.target.playVideo();
+                    }
+
+                    function onPlayerPlaybackQualityChange(event) {
+                        var playbackQuality = event.target.getPlaybackQuality();
+                        var suggestedQuality = 'hd1080';
+
+                        console.log("Quality changed to: " + playbackQuality);
+
+                        if (playbackQuality !== 'hd1080') {
+                            console.log("Setting quality to " + suggestedQuality);
+                            event.target.setPlaybackQuality(suggestedQuality);
+                        }
+                    }
+                </script>
+
+                <script src="https://www.youtube.com/iframe_api"></script>
 
                 <div class="row justify-content-between gy-4 mt-4">
 
