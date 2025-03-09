@@ -127,6 +127,21 @@ h6 {
     display: block;
 }
 
+.video-container {
+    width: 100%;
+    max-width: 4000px; /* Vous pouvez ajuster cette valeur selon vos besoins */
+    height: 720px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .video-container video {
+        width: 100%;
+        height: auto;
+    }
+
+
 .gallery-item .overlay {
     font-family: var(--default-font);
     position: absolute;
